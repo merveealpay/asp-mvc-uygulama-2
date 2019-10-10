@@ -1,0 +1,12 @@
+﻿@using RazorNedir.Models
+@model List<Sinif>
+
+<div class="col-md-4">
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item"><a href="/Home/Sinif/@item.Id"> @item.Ad  </a> </li>
+        }
+
+    </ul>
+</div>

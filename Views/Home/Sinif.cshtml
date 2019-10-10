@@ -1,0 +1,16 @@
+﻿@using  RazorNedir.Models
+@model List<Ogrenci>
+
+@{
+    ViewBag.Title = "Sinif";
+}
+
+<h2>Sinif</h2>
+
+@Html.Action("BilgiPartial")
+
+@Html.Partial("OgrenciListesiPartial", Model)
+
+
+@Html.Partial("SinifListesiPartial", ViewBag.Siniflar as List<Sinif>)
+

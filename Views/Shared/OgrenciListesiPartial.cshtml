@@ -1,0 +1,24 @@
+﻿@using  RazorNedir.Models
+@model List<Ogrenci>
+
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <tr>
+                <th>Oğrenci No</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Adres</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OgrenciNo</td>
+                    <td>@item.Ad</td>
+                    <td>@item.Soyad</td>
+                    <td>@item.Adres</td>
+                </tr>
+            }
+
+        </table>
+    </div>

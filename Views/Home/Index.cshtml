@@ -1,0 +1,50 @@
+﻿@using RazorNedir.Models
+@model Tuple<List<Ogrenci>, List<Sinif>,string>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Tuple ile geliyor</h3>
+
+<div class="col-md-4">
+    <ul class="list-group">
+        @foreach (var item in Model.Item2)
+        {
+            <li class="list-group-item"><a href="/Home/Sinif/@item.Id"> @item.Ad  </a> </li>
+        }
+
+    </ul>
+</div>
+
+<h3>Partial view ile geliyor</h3>
+
+@Html.Partial("SinifListesiPartial", Model.Item2)
+
+
+<div class="col-md-8" >
+    <table class="table table-striped">
+        <tr>
+            <th>Oğrenci No</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Adres</th>
+            <th>Sınıf</th>
+        </tr>
+        
+        @foreach (var item in Model.Item1)
+        {
+    <tr>
+        <td>@item.OgrenciNo</td>
+        <td>@item.Ad</td>
+        <td>@item.Soyad</td>
+        <td>@item.Adres</td>
+        <td>@Model.Item2.Find(x=> x.Id==item.SinifId).Ad</td>
+    </tr>
+        }
+        
+    </table>
+</div>

@@ -1,0 +1,76 @@
+﻿@using  RazorNedir.Models
+@model Ogrenci
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*@foreach (var item in Model)
+    {
+
+    }*@
+
+<h3>@Model.Ad @Model.Soyad </h3>
+<h4>@(Model.Ad + " " + Model.Soyad)</h4>
+@{
+    string adSoyad = Model.Ad + " " + Model.Soyad;
+    string adres = Model.Adres.ToUpper();
+    int ogrenciNo = Model.OgrenciNo;
+    if (Model.Id > 3)
+    {
+        <h5>Ad Soyad : @adSoyad, Adres: @adres</h5>
+        <p>@Model.Id id li öğrenci ilk üçe giremedi.</p>
+    }
+    else
+    {
+        <p>@Model.Id id li öğrenci ilk üçte!</p>
+    }
+}
+
+
+@{
+    string metin = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id nisi lacus. Ut lacinia nibh lacus. Morbi congue gravida turpis non venenatis. Etiam commodo ullamcorper tempus. Nunc fringilla tempor magna, at placerat felis. In scelerisque varius metus, ac tempor tortor venenatis vel. Etiam orci ligula, placerat in mollis sed, ornare ut erat. Donec eget semper urna. Nunc eu nisi neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque in consequat lectus. Pellentesque ullamcorper eleifend urna, quis gravida risus porttitor ut. Donec in ex nisl. Pellentesque a varius enim, quis fermentum nibh.";
+
+}
+
+@functions {
+    public string BasHarfiBuyukYap(string text)
+    {
+        string[] kelimeler = text.Split(' ');
+        string yeniMetin = "";
+        foreach (var item in kelimeler)
+        {
+            yeniMetin += item.Substring(0, 1).ToUpper().Replace("İ", "I") + item.Substring(1, item.Length - 1) + " ";
+        }
+        return yeniMetin;
+    }
+}
+
+@BasHarfiBuyukYap(metin)
+
+@Html.Action("BilgiPartial", "Home")
+@Html.ActionLink("Anasayfaya git", "Index", "Home", null, new { id = "aLink", @class = "btn btn-success" })
+
+<p>@@gmail.com</p>
+@Html.AntiForgeryToken()
+@Html.AttributeEncode("<a href='#'>Tık</a>")
+@using (Html.BeginForm())
+{
+
+}
+
+@Html.CheckBox("asd") Erkek
+@Html.CheckBox("asd") Kadın
+
+@Html.RadioButton("cinsiyet"," Erkek", new { id="e"} )Erkek
+@Html.RadioButton("cinsiyet"," Kadın", new { id = "k" })Kadın
+
+@Html.DropDownListFor(x=> x.SinifId, new SelectList(ViewBag.Siniflar as List<Sinif>, "Id", "Ad"), "Seçiniz", new {@class="form-control" })
+
+@Html.HiddenFor(x=> x.Id)
+
+@Html.ListBox("lst",new SelectList(ViewBag.Siniflar as List<Sinif>, "Id", "Ad"))
+
+@Html.Raw("<i>Fatma Betül YILMAZ </i>")
+@Html.Label("<i>Fatma Betül YILMAZ </i>")
